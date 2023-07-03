@@ -9,6 +9,9 @@ updateOutput();
 form.addEventListener('input', throttle(saveMessage, 500));
 form.addEventListener("submit", formSubmit);
 
+const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
+const parsedSettings = JSON.parse(savedSettings);
+
 function saveMessage(evt) {
   const formElements = {
         email: form.elements.email.value,
@@ -19,8 +22,8 @@ function saveMessage(evt) {
 }
 
 function updateOutput() {
-  const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
-  const parsedSettings = JSON.parse(savedSettings);
+  // const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
+  // const parsedSettings = JSON.parse(savedSettings);
   if (parsedSettings) {
     form.elements.email.value = parsedSettings.email || "";
     form.elements.message.value = parsedSettings.message || "";
